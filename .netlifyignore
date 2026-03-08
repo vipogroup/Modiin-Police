@@ -1,0 +1,5 @@
+output/
+documents_archive/
+documents_scan_report.csv
+documents_scan_report.md
+.netlify/
