@@ -1,1 +1,6 @@
 documents_archive/
+
+output/
+documents_scan_report.csv
+documents_scan_report.md
+.netlify/
