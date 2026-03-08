@@ -592,6 +592,56 @@
     @page { size: A4; margin: 15mm; }
   }
 
+  /* Zoom Controls */
+  .zoom-controls {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 999;
+  }
+
+  .zoom-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .zoom-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.1);
+  }
+
+  .zoom-btn.reset {
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .zoom-level {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  @media print {
+    .zoom-controls { display: none !important; }
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .header-content { flex-direction: column; text-align: center; }
@@ -1249,6 +1299,14 @@
   </div>
 </div>
 
+<!-- Zoom Controls -->
+<div class="zoom-controls" id="zoom-controls" style="display:none">
+  <button class="zoom-btn" onclick="zoomIn()" title="הגדל">+</button>
+  <div class="zoom-level" id="zoom-level">100%</div>
+  <button class="zoom-btn" onclick="zoomOut()" title="הקטן">−</button>
+  <button class="zoom-btn reset" onclick="zoomReset()" title="איפוס">⟲</button>
+</div>
+
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -1317,6 +1375,46 @@
   function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
+
+  // ===== ZOOM CONTROLS =====
+  let currentZoom = 100;
+  const ZOOM_STEP = 10;
+  const ZOOM_MIN = 50;
+  const ZOOM_MAX = 200;
+
+  function updateZoom() {
+    document.body.style.zoom = currentZoom + '%';
+    document.getElementById('zoom-level').textContent = currentZoom + '%';
+  }
+
+  function zoomIn() {
+    if (currentZoom < ZOOM_MAX) {
+      currentZoom += ZOOM_STEP;
+      updateZoom();
+    }
+  }
+
+  function zoomOut() {
+    if (currentZoom > ZOOM_MIN) {
+      currentZoom -= ZOOM_STEP;
+      updateZoom();
+    }
+  }
+
+  function zoomReset() {
+    currentZoom = 100;
+    updateZoom();
+  }
+
+  // Show zoom controls only when logged in
+  const zoomObserver = new MutationObserver(() => {
+    const mainApp = document.getElementById('main-app');
+    const zoomCtrl = document.getElementById('zoom-controls');
+    if (mainApp && zoomCtrl) {
+      zoomCtrl.style.display = mainApp.style.display === 'block' ? 'flex' : 'none';
+    }
+  });
+  zoomObserver.observe(document.getElementById('main-app'), { attributes: true, attributeFilter: ['style'] });
 </script>
 
 </body>
