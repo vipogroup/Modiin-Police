@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ציר זמן מאוחד</title>
+  <style>
+    body { margin:0; font-family:"Segoe UI", Tahoma, Arial, sans-serif; background:#ffffff; color:#111; line-height:1.6; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 18px 18px 60px; }
+    .btnbar { position: sticky; top:0; background:#fff; padding:10px 0; border-bottom:1px solid #ddd; margin-bottom:14px; z-index:10; display:flex; gap:8px; }
+    .button { padding:10px 14px; border:none; border-radius:10px; background:#111; color:#fff; cursor:pointer; font-weight:800; font-size:13px; }
+    .button.secondary { background:#fff; color:#111; border:1px solid #ddd; }
+    h1 { margin: 0 0 6px; font-size: 22px; }
+    .subtitle { color:#444; font-size: 13px; margin-bottom: 14px; }
+
+    .timeline { position: relative; padding-right: 28px; }
+    .timeline:before { content:""; position:absolute; right: 10px; top: 0; bottom: 0; width: 3px; background:#cbd5e1; border-radius: 3px; }
+    .item { position: relative; margin-bottom: 14px; padding-right: 18px; }
+    .dot { position:absolute; right: -2px; top: 10px; width: 14px; height: 14px; background:#fff; border:3px solid #2563eb; border-radius: 50%; }
+    .dot.warn { border-color:#f59e0b; }
+    .dot.danger { border-color:#ef4444; }
+    .card { border:1px solid #e5e7eb; border-radius: 14px; padding: 14px 14px; background:#fafafa; }
+    .date { font-weight:800; color:#1d4ed8; font-size: 12px; margin-bottom: 4px; }
+    .title { font-size: 16px; font-weight:900; margin-bottom: 6px; }
+    .desc { color:#111; font-size: 14px; }
+    .desc p { margin: 0 0 8px; }
+    ul { margin: 0; padding-right: 18px; }
+    li { margin: 0 0 6px; }
+
+    .note { margin-top: 14px; border:1px dashed #bbb; border-radius: 12px; padding: 10px 12px; color:#333; font-size: 13px; }
+
+    @media print {
+      .btnbar { display:none; }
+      .card { background:#fff; }
+      @page { size:A4; margin: 14mm; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="btnbar">
+      <button class="button" onclick="window.print()">🖨️ הדפס</button>
+      <button class="button secondary" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️ למעלה</button>
+      <a class="button secondary" href="00_index.html" style="text-decoration:none; display:inline-flex; align-items:center;">↩️ חזרה</a>
+    </div>
+
+    <h1>ציר זמן מאוחד – מקרה דרור פשרל / שבו</h1>
+    <div class="subtitle">מטרה: רצף אירועים ברור לפגישה ולהדפסה. אם אין תאריך מדויק—האירוע מוצג לפי סדר התרחשות.</div>
+
+    <div class="timeline">
+      <div class="item">
+        <div class="dot warn"></div>
+        <div class="card">
+          <div class="date">לפני כשנתיים – רקע</div>
+          <div class="title">תחילת הקשר הזוגי ומעבר מגורים</div>
+          <div class="desc">
+            <p>מרים שבו ומנחם דרור פשרל בקשר זוגי מזה כשנתיים. עקב התנגדות קשה מצד משפחתה של מרים לקשר, בני הזוג עברו להתגורר בבית הוריו של מנחם בבאר יעקב.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot warn"></div>
+        <div class="card">
+          <div class="date">תקופה מתמשכת</div>
+          <div class="title">איומים, הטרדות ומעקבים</div>
+          <div class="desc">
+            <ul>
+              <li>הודעות מאיימות בפגיעה פיזית, מעקבים וניסיונות הפחדה.</li>
+              <li>הפצת עלילות שקר חמורות: "מנחם אנס את מרים" / "מסמם אותה".</li>
+              <li>הצהרות של מאיר שבו כי יפנה למקורבים ומכרים "כדי להרוס להם את החיים".</li>
+              <li>אזכור מסמך/צילום הלוואה על סך 100,000 ₪ שנעשה בו שימוש כאמצעי לחץ.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot danger"></div>
+        <div class="card">
+          <div class="date">תקופה מתמשכת</div>
+          <div class="title">הכפשות ואיומים כלפי הורי מנחם</div>
+          <div class="desc">
+            <p>מאיר שבו ניגש לאביו של מנחם (ניסים דרור פשרל) מחוץ לבית הכנסת בבאר יעקב, איים עליו והטיח האשמות שקריות חמורות.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot warn"></div>
+        <div class="card">
+          <div class="date">חופשה באילת (בשעה 07:00 בבוקר)</div>
+          <div class="title">אירוע אילת – חשד למצלמות + התערבות משטרתית</div>
+          <div class="desc">
+            <ul>
+              <li>בדירת נופש באילת התעורר חשד לקיום מצלמות נסתרות בדירה.</li>
+              <li>המשטרה הופיעה יחד עם מאיר ואיתן שבו בטענה שמרים "בסכנה".</li>
+              <li>מרים הבהירה לשוטרים שהיא נמצאת עם מנחם מרצונה המלא; המשטרה ליוותה אותה לרכבו של מנחם והם עזבו בבטחה.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot danger"></div>
+        <div class="card">
+          <div class="date">לאחר אירוע אילת</div>
+          <div class="title">הפצת תיעוד אינטימי וסחיטה באיומים</div>
+          <div class="desc">
+            <p>נודע כי מאיר שבו הציג תיעוד אינטימי שצולם לכאורה ממצלמות נסתרות בדירת הנופש, תוך איום להפיץ את הסרטונים למשפחה/חברים/מכרים אם מנחם לא יעזוב את מרים. נטען גם לקיום מצלמות בחדרי רחצה/שירותים.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot danger"></div>
+        <div class="card">
+          <div class="date">24.6.2025 (סף זמן מוסכם: 18:30)</div>
+          <div class="title">אירוע מרכזי – כליאה, אלימות, נזק לרכב ומחדלי משטרה</div>
+          <div class="desc">
+            <ul>
+              <li>מרים הוזמנה לבית המשפחה "לדבר"; לטענת בני הזוג נלקח ממנה הטלפון ונמנעה ממנה יציאה (דלתות/חלונות סגורים).</li>
+              <li>מנחם פנה למוקד 100; נטען כי מאיר שבו מסר לשוטרים שמרים "בהתקף פסיכוטי" ולכן לא יכולה לדבר.</li>
+              <li>המשטרה לא מיהרה להגיע, וכשהגיעה—דיברה בעיקר עם האב, לא בדקה את מרים באופן מספק, והתכוונה לעזוב.</li>
+              <li>מרים צעקה בבכי: "תוציאו אותי מכאן!"; השוטרים לא פעלו להוציאה בזמן אמת.</li>
+              <li>במהלך ההימלטות נטען לתקיפה פיזית של מנחם ונזק לרכב (שמשה שבורה, פגיעה במראה וכו').</li>
+              <li>לטענת בני הזוג, השוטרים לא עצרו את התוקפים, ואף הופנו האשמות כלפי מנחם כאילו "גרם לדריסת האב".</li>
+              <li>הימלטות התאפשרה בין היתר בעקבות שכנים שיצאו לרחוב.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot warn"></div>
+        <div class="card">
+          <div class="date">לאחר האירוע</div>
+          <div class="title">זימונים לחקירה וחשש לניגוד עניינים</div>
+          <div class="desc">
+            <ul>
+              <li>למרות שמנחם טוען שהוא הקורבן—הוא זומן כחשוד לחקירה.</li>
+              <li>מרים זומנה גם היא לחקירה והביעה חשש ממשי להגיע לתחנה עקב קשרים נטענים בין שוטרים לבין מאיר שבו.</li>
+              <li>נטען שלא נמסרה עילת החשד כנדרש, ונאמר כי אם לא יתייצבו—תישלח ניידת לביתם.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="dot warn"></div>
+        <div class="card">
+          <div class="date">שלב בקשות</div>
+          <div class="title">בקשות להעברת החקירה + בדיקה במח"ש + הגנה</div>
+          <div class="desc">
+            <ul>
+              <li>בקשה להעברת החקירה לתחנה/יחידה ניטרלית (כולל דרישה להימנע מצעדי אכיפה עד הכרעה בבקשה).</li>
+              <li>בקשה לבחינת התנהלות השוטרים במח"ש.</li>
+              <li>בקשה לשקילת צו הרחקה/צו הגנה ושמירת סודיות כתובת מגורים.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      הערה: בחלק מהמסמכים קיימים שדות תאריך/שעה למילוי ידני. בציר זמן זה נכללו כל האירועים המרכזיים והייחודיים שנמצאו בכל גרסאות המסמכים.
+    </div>
+  </div>
+</body>
+</html>
